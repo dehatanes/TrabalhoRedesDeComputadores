@@ -1,3 +1,5 @@
+package Models;
+
 public class Constants {
 
     // STATUS CONSTANTS

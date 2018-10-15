@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a59beea2-58a3-4bdf-81f5-5485c64effa9" name="Default Changelist" comment="" />
+    <list default="true" id="a59beea2-58a3-4bdf-81f5-5485c64effa9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/JogoDaVelha/src/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/JogoDaVelha/src/Models/Constants.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,22 +22,24 @@
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.6" value="2" />
+          <entry key="project.open.time.6" value="3" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="iml" value="1" />
-          <entry key="java" value="11" />
+          <entry key="class" value="1" />
+          <entry key="iml" value="2" />
+          <entry key="java" value="17" />
           <entry key="py" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="11" />
+          <entry key="CLASS" value="1" />
+          <entry key="IDEA_MODULE" value="2" />
+          <entry key="JAVA" value="17" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
@@ -53,34 +57,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="24" selection-start-column="24" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Models/GameModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Client/Client.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Models/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Client/UserInterface/Interfaces.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
@@ -90,9 +76,62 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JogoDaVelha/Constants.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JogoDaVelha/JogoDaVelha.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JogoDaVelha/Models/GameModel.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JogoDaVelha/Client/Main.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-114">
+              <folding>
+                <element signature="e#0#1514#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JogoDaVelha/Client/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JogoDaVelha/Client/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-204" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JogoDaVelha/Client/UserInterface/Interfaces.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="59" column="47" lean-forward="true" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Client/UserInterface/Navigator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="187">
               <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -151,14 +190,29 @@
           <expand>
             <path>
               <item name="TrabalhoRedesDeComputadores" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrabalhoRedesDeComputadores" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrabalhoRedesDeComputadores" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrabalhoRedesDeComputadores" type="462c0819:PsiDirectoryNode" />
+              <item name="JogoDaVelha" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrabalhoRedesDeComputadores" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrabalhoRedesDeComputadores" type="462c0819:PsiDirectoryNode" />
+              <item name="JogoDaVelha" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrabalhoRedesDeComputadores" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -172,6 +226,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Eduardo\Desktop\TrabalhoRedesDeComputadores\JogoDaVelha\Models" />
       <recent name="C:\Users\Eduardo\Desktop\TrabalhoRedesDeComputadores\ModelsAndConfigs\src" />
     </key>
   </component>
@@ -250,7 +305,7 @@
   <component name="ToolWindowManager">
     <frame x="1273" y="0" width="1294" height="1047" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29983792" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30470017" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -284,7 +339,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Client/UserInterface.java" />
-    <entry file="file://$PROJECT_DIR$/JogoDaVelha/JogoDaVelha.iml" />
     <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Client/UserInterface/StartScreen.java" />
     <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Models/ClientModel.java" />
     <entry file="file://$PROJECT_DIR$/../jogoDaVelha .py">
@@ -295,13 +349,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Client/Main.java" />
-    <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" selection-start-column="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Models/GameModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -318,7 +365,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Client/UserInterface/Navigator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="187">
           <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -330,6 +377,52 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JogoDaVelha/Constants.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JogoDaVelha/JogoDaVelha.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JogoDaVelha/Models/GameModel.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JogoDaVelha/Client/Main.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-114">
+          <folding>
+            <element signature="e#0#1514#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JogoDaVelha/Client/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JogoDaVelha/Client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JogoDaVelha/Client/UserInterface/Interfaces.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="59" column="47" lean-forward="true" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JogoDaVelha/src/Models/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
