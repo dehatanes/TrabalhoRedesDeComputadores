@@ -131,6 +131,8 @@ public class Client{
 
     private static void startNewSoloGame(){
         // while in this mode -> handle server communication
-
+        /*
+        * Se basear no que foi feito com o multiplayer (mas sem necessidade de mostrar que o jogador desistiu)
+        */
     }
 }
