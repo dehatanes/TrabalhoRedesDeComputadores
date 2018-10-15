@@ -6,6 +6,7 @@ import Models.GameModel;
 public class Client{
 
     private static String hostName;
+    private static String myPlayerName;
 
     public static void main(String[] args) {
         // if no hostname is provided, quit
@@ -16,11 +17,11 @@ public class Client{
         // setup host communication
         hostName = args[0];
 
-        ///////////////////////////
+        //////////////////////////
         // START APPLICATION
         //////////////////////////
 
-        String newPlayerName = Navigator.goToStartAndGetNewClient();
+        myPlayerName = Navigator.goToStartAndGetNewClient();
         // todo -> enviar nome do jogador pro host
         // todo -> esperar resposta do servidor
         /*
@@ -32,7 +33,7 @@ public class Client{
 
         boolean finish = false;
         while(!finish){
-            int optionSelected = Navigator.goToMenu(newPlayerName);
+            int optionSelected = Navigator.goToMenu(myPlayerName);
             switch(optionSelected) {
                 case 1:
                     watchGame();
@@ -51,12 +52,18 @@ public class Client{
 
     private static void watchGame(){
         // while in this mode -> handle server communication
+        //////////////////////////
+        // CONNECT WITH SERVER
+        //////////////////////////
         // pedir para o servidor a lista de jogos
         int qtdEspera;
         while(/*Server nao responde*/){
             // a cada keep alive incrementar qtd de espera (só pra aparecer bonitinho o loading)
             Navigator.goToLoadingScreen(qtdEspera);
         }
+        //////////////////////////
+        // CHOOSE GAME
+        //////////////////////////
         do {
             String[] gamesList;// temos lista de jogos ativos com a resposta do servidor
             /*
@@ -72,17 +79,54 @@ public class Client{
                 Navigator.showSelectGameError();
             }
         } while (/*Resposta do servidor for de erro*/);
-
+        //////////////////////////
+        // START STREAMING
+        //////////////////////////
         do{
             GameModel partida = null;// recebe resposta do servidor com jogo
             Navigator.displayGameInWatchMode(partida); // atualiza a cada keep alive
         } while(/*partida nao acabou*/);
-
     }
 
     private static void startNewMultiplayerGame() {
         // while in this mode -> handle server communication
-
+        //////////////////////////
+        // CONNECT WITH SERVER
+        //////////////////////////
+        int qtdEspera;
+        while(/*Server nao responde*/){
+            // a cada keep alive incrementar qtd de espera (só pra aparecer bonitinho o loading)
+            Navigator.goToLoadingScreen(qtdEspera);
+        }
+        //////////////////////////
+        // START GAME
+        //////////////////////////
+        qtdEspera = 0;
+        GameModel partida;
+        do{
+            // requisicao de status do jogo
+            partida = null;// recebe resposta do servidor com jogo
+            if(partida.playerGiveUp) {
+                Navigator.displayPlayerGiveUp(partida);
+                break;
+            }
+            if(partida.thisTurnPlayer.equals(myPlayerName)){
+                qtdEspera = 0;
+                if(partida.isOver){
+                    Navigator.displayIwin(partida);
+                } else {
+                    int selectedField = Navigator.displayGameInMyTurnMode(partida);
+                    // enviar pro servidor a casa que eu escolhi
+                }
+            } else {
+                if(partida.isOver){
+                    Navigator.displayIloose(partida);
+                } else {
+                    Navigator.displayGameNotInMyTurnMode(partida, qtdEspera);
+                }
+                qtdEspera++;
+            }
+        } while(!partida.isOver);
     }
 
     private static void startNewSoloGame(){

@@ -97,6 +97,12 @@ class Interfaces  {
         System.out.print("Escolha uma casa para marcar: ");
     }
 
+    static void showInvalidBoardOptionMessage(){
+        System.out.println();
+        System.out.println("Casa invalida! Por favor, escolha um numero disponivel no tabuleiro.");
+        System.out.print("Opcao: ");
+    }
+
     static void showYouWinFragment(){
         System.out.println("---------------------------");
         System.out.println(" PARABENS VOCE GANHOU!!!");
@@ -112,9 +118,9 @@ class Interfaces  {
     }
 
     static void showWinnerPlayerFragment(String winnerPlayer){
-        System.out.println("---------------------------");
+        System.out.println("--------------------------------------------");
         System.out.println(" O JOGADOR " + winnerPlayer + " GANHOU!!!");
-        System.out.println("---------------------------");
+        System.out.println("--------------------------------------------");
         System.out.println("Pressione qualquer tecla para voltar ao menu...");
     }
 

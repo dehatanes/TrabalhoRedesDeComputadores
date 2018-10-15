@@ -31,7 +31,7 @@ public class Navigator {
                 showInvalidMenuOptionMessage();
                 opt = 0;
             }
-        } while(opt > 0 && opt < 5);
+        } while(opt < 1 || opt > 4);
         return opt;
     }
 
@@ -53,9 +53,56 @@ public class Navigator {
         showGameScreenHeader(game.id, game.player1, game.player2, game.qtdPeopleWatching);
         showPlayerTurnFragment(game.thisTurnPlayer);
         displayBoardFragment(game.board);
-        if(game.isOver){
+        if(game.playerGiveUp){
+            showPlayerGiveUp(game.thisTurnPlayer);
+        } else if(game.isOver){
             showWinnerPlayerFragment(game.thisTurnPlayer);
-            scanner.next();
         }
+        scanner.next();
+    }
+
+    public static int displayGameInMyTurnMode(GameModel game){
+        showGameScreenHeader(game.id, game.player1, game.player2, game.qtdPeopleWatching);
+        showPlayerTurnFragment(game.thisTurnPlayer);
+        displayBoardFragment(game.board);
+        showYourTurnFragment();
+        int opt;
+        do {
+            try {
+                opt = scanner.nextInt();
+            } catch (Exception e){
+                showInvalidBoardOptionMessage();
+                opt = 0;
+            }
+        } while(opt < 1 || opt > 9 || !game.isValidPosition(game.board, opt));
+        return opt;
+    }
+
+    public static int displayGameNotInMyTurnMode(GameModel game, int numWaitingDots){
+        showGameScreenHeader(game.id, game.player1, game.player2, game.qtdPeopleWatching);
+        showPlayerTurnFragment(game.thisTurnPlayer);
+        displayBoardFragment(game.board);
+        showWaitForYourTurnFragment(numWaitingDots);
+    }
+
+    public static void displayIwin(GameModel game){
+        showGameScreenHeader(game.id, game.player1, game.player2, game.qtdPeopleWatching);
+        showPlayerTurnFragment(game.thisTurnPlayer);
+        displayBoardFragment(game.board);
+        showYouWinFragment();
+    }
+
+    public static void displayIloose(GameModel game){
+        showGameScreenHeader(game.id, game.player1, game.player2, game.qtdPeopleWatching);
+        showPlayerTurnFragment(game.thisTurnPlayer);
+        displayBoardFragment(game.board);
+        showYouLooseFragment();
+    }
+
+    public static void displayPlayerGiveUp(GameModel game){
+        showGameScreenHeader(game.id, game.player1, game.player2, game.qtdPeopleWatching);
+        showPlayerTurnFragment(game.thisTurnPlayer);
+        displayBoardFragment(game.board);
+        showPlayerGiveUp(game.thisTurnPlayer);
     }
 }
