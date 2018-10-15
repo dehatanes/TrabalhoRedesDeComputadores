@@ -7,7 +7,7 @@ import java.util.Scanner;
 import static Client.UserInterface.Interfaces.*;
 
 
-public class ScreenFactory {
+public class Navigator {
 
     private static Scanner scanner  = new Scanner(System.in);
 
