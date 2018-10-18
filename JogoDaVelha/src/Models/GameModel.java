@@ -2,8 +2,8 @@ package Models;
 
 public class GameModel {
     public int id;
-    public String player1;
-    public String player2;
+    public String player1; // sempre ser o x
+    public String player2; // sempre ser o o
     public int qtdPeopleWatching;
     public String thisTurnPlayer; // por esse atributo que saberemos o ganhador quando game.isOver ou quem desistiu quando game.playerGiveUp
     public boolean isOver;
