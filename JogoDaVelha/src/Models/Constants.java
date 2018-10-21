@@ -24,7 +24,7 @@ public class Constants {
 
     // APPLICATION CONSTANTS
     public static final int TIMEOUT_TO_BE_DEAD = 4000;   // 4 min
-    public static final int KEEP_ALIVE_TIMER = 500;     // 1/2 min
+    public static final int KEEP_ALIVE_TIMER = 500;      // 1/2 min
     public static final int SERVER_SOCKET = 6031;
 
 }

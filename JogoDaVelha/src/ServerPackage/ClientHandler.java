@@ -1,6 +1,5 @@
 package ServerPackage;
 
-
 import Models.Constants;
 import Models.Request;
 
@@ -23,7 +22,6 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-
         Request received;
         while (true) {
             if (!this.isloggedin) {
@@ -33,6 +31,7 @@ public class ClientHandler implements Runnable {
             try {
                 received = (Request) ois.readObject();
                 Request send = new Request();
+                System.out.println("Received something");
                 switch (received.status) {
                     case Constants.STATUS_NEW_CLIENT:
                         if (isUsernameAlreadyInUse(received.username)) {
@@ -43,22 +42,31 @@ public class ClientHandler implements Runnable {
                         }
                         break;
                     case Constants.STATUS_LIST_GAMES:
+                        System.out.println("List games");
                         break;
                     case Constants.STATUS_NEW_MULT_GAME:
                         System.out.println("Multi game começado");
                         break;
                     case Constants.STATUS_NEW_SINGL_GAME:
+                        System.out.println("STATUS_NEW_SINGL_GAME");
                         break;
                     case Constants.STATUS_NEXT_TURN:
+                        System.out.println("STATUS_NEXT_TURN");
                         break;
                     case Constants.STATUS_GAME_OVER:
+                        System.out.println("STATUS_GAME_OVER");
                         break;
                     case Constants.STATUS_WATCH:
+                        System.out.println("STATUS_WATCH");
                         break;
                     case Constants.STATUS_CLIENT_LOGOUT:
+                        System.out.println("STATUS_CLIENT_LOGOUT");
                         this.logout();
                         break;
                     default:
+                        // todo remove -> just for test
+                        this.name = received.username;
+                        send.status = Constants.STATUS_CLIENT_CREATED;
                         break;
                 }
                 if (send.status != Constants.UNKNOWN_STATUS && send.status != Constants.STATUS_ERRO) {

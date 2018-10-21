@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class Client {
 
@@ -19,6 +20,10 @@ public class Client {
     private static ObjectInputStream ois = null;
 
     public static void main(String[] args) throws UnknownHostException, IOException {
+        //////////////////////////
+        // SETUP APPLICATION
+        //////////////////////////
+
         // if no hostname is provided, quit
         if (args.length == 0) {
             System.out.println("User did not enter a host name. Client program exiting.");
@@ -29,20 +34,9 @@ public class Client {
 
         InetAddress ip = InetAddress.getByName(hostName);
 
-
         //////////////////////////
         // START APPLICATION
         //////////////////////////
-
-
-        // todo -> enviar nome do jogador pro host
-        // todo -> esperar resposta do servidor
-        /*
-        if(resposta == erro || sem resposta no timeLimit){
-            Navigator.goToLoginError();
-            System.exit(0);
-        }
-         */
 
         Socket s = new Socket(ip, Constants.SERVER_SOCKET);
         oos = new ObjectOutputStream(s.getOutputStream());
@@ -59,6 +53,7 @@ public class Client {
 
                 boolean finish = false;
                 while (!finish) {
+                    System.out.println("Listening send message..");
                     try {
                         Request r = new Request();
                         int optionSelected = Navigator.goToMenu(myPlayerName);
@@ -95,7 +90,6 @@ public class Client {
         Thread readMessage = new Thread(new Runnable() {
             @Override
             public void run() {
-
                 while (true) {
                     try {
                         Request r = (Request) ois.readObject();
@@ -108,6 +102,7 @@ public class Client {
                                 createUsername();
                                 break;
                             default:
+                                System.out.println("Message received");
                                 break;
                         }
                     } catch (IOException e) {
@@ -217,5 +212,4 @@ public class Client {
         oos.writeObject(r);
         oos.flush();
     }
-
 }

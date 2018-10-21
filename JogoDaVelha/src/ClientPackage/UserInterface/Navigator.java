@@ -28,15 +28,22 @@ public class Navigator {
 
     public static int goToMenu(String username) {
         showMenuScreen(username);
-        int opt;
-        do {
+        int opt = 0;
+        while(true) {
             try {
                 opt = scanner.nextInt();
+                if(opt <= 4 && opt >= 1) {
+                    break;
+                } else {
+                    showInvalidMenuOptionMessage();
+                    opt = 0;
+                }
             } catch (Exception e) {
                 showInvalidMenuOptionMessage();
+                scanner.nextLine(); // clean buffer
                 opt = 0;
             }
-        } while (opt < 1 || opt > 4);
+        }
         return opt;
     }
 

@@ -44,7 +44,7 @@ class Interfaces  {
         System.out.println("3) Comecar novo jogo contra um bot");
         System.out.println("4) SAIR");
         System.out.println();
-        System.out.print("Opcao: ");
+        System.out.print("Opcao (apenas digitos): ");
     }
 
     static void showInvalidMenuOptionMessage(){
