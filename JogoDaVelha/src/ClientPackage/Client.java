@@ -31,7 +31,6 @@ public class Client {
         }
         // setup host communication
         hostName = args[0];
-
         InetAddress ip = InetAddress.getByName(hostName);
 
         //////////////////////////
@@ -41,6 +40,7 @@ public class Client {
         Socket s = new Socket(ip, Constants.SERVER_SOCKET);
         oos = new ObjectOutputStream(s.getOutputStream());
         ois = new ObjectInputStream(s.getInputStream());
+        
         Thread sendMessage = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -53,7 +53,6 @@ public class Client {
 
                 boolean finish = false;
                 while (!finish) {
-                    System.out.println("Listening send message..");
                     try {
                         Request r = new Request();
                         int optionSelected = Navigator.goToMenu(myPlayerName);
@@ -84,6 +83,7 @@ public class Client {
                         e.printStackTrace();
                     }
                 }
+                System.exit(0);
             }
         });
 

@@ -34,11 +34,11 @@ public class ClientHandler implements Runnable {
                 System.out.println("Received something");
                 switch (received.status) {
                     case Constants.STATUS_NEW_CLIENT:
-                        if (isUsernameAlreadyInUse(received.username)) {
-                            send.status = Constants.STATUS_USERNAME_UNAVAILABLE;
-                        } else {
+                        if(Server.addNewClient(received.username, this)){ // sucesso ao adicionar cliente
                             this.name = received.username;
                             send.status = Constants.STATUS_CLIENT_CREATED;
+                        } else { // usuario ja em uso
+                            send.status = Constants.STATUS_USERNAME_UNAVAILABLE;
                         }
                         break;
                     case Constants.STATUS_LIST_GAMES:
@@ -85,36 +85,13 @@ public class ClientHandler implements Runnable {
 
     public void logout() {
         try {
-            ClientHandler mc = this.findClientHandlerInServer(this.name);
-            if (mc != null) {
-                mc.isloggedin = false;
-                mc.ois.close();
-                mc.oos.close();
-                mc.s.close();
-                Server.ar.remove(mc);
-            } else {
-                System.out.println("Não encontrou o client handler");
-            }
+            Server.removeClient(this.name);
+            this.ois.close();
+            this.oos.close();
+            this.s.close();
         } catch (IOException e) {
-            System.out.println("Deu erro na hora de fechar alguma coisa");
+            System.out.println("Erro na hora de fechar o cliente: " + this.name);
         }
-    }
-
-    private ClientHandler findClientHandlerInServer(String username) {
-        for (ClientHandler mc : Server.ar) {
-            if (mc.name.equals(username) && mc.isloggedin == true) {
-                return mc;
-            }
-        }
-        return null;
-    }
-
-    private boolean isUsernameAlreadyInUse(String username) {
-        ClientHandler mc = this.findClientHandlerInServer(username);
-        if (mc == null) {
-            return false;
-        }
-        return true;
     }
 
     private void sendRequest(Request r) {
