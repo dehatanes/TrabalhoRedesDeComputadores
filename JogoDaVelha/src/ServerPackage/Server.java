@@ -21,7 +21,7 @@ public class Server {
         // ServerSocket. Quando alguém se conectar ao servidor, o
         // método desbloqueia e retorna com um objeto da classe
         // Socket, que é uma porta da comunicação.
-        System.out.println("Aguardando conexao do cliente...");   
+        System.out.println("Aguardando conexao de clientes...\n");   
 
         Socket cliente;
         while (true) {
@@ -42,12 +42,18 @@ public class Server {
         } else {
             System.out.println("Novo cliente adicionado: " + clientName);
             activeClients.put(clientName, handler);
-            return true;            
+            return true;  
         }
     }
 
-    public static void removeClient(String clientName){
-        System.out.println("Cliente desconectado: " + clientName);
-        activeClients.remove(clientName);
+    public static boolean removeClient(String clientName){
+        if(activeClients.containsKey(clientName)) {
+            System.out.println("Cliente desconectado: " + clientName);
+            activeClients.remove(clientName);
+            return true;
+        } else {
+            System.out.println("Cliente: " + clientName + " nao encontrado para logout...");
+            return false;
+        }
     }
 }

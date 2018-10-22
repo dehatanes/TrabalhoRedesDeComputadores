@@ -13,7 +13,6 @@ public class Navigator {
         Scanner scanner = new Scanner(System.in);
         showStartScreen();
         String resp = scanner.nextLine();
-        scanner.close;
         return resp;
     }
 
@@ -21,7 +20,6 @@ public class Navigator {
         Scanner scanner = new Scanner(System.in);
         showUsernameError();
         String resp = scanner.nextLine();
-        scanner.close;
         return resp;
     }
 
@@ -29,7 +27,6 @@ public class Navigator {
         Scanner scanner = new Scanner(System.in);
         showFailToLoginScreen();
         scanner.next();
-        scanner.close();
     }
 
     public static int goToMenu(String username) {
@@ -47,11 +44,9 @@ public class Navigator {
                 }
             } catch (Exception e) {
                 showInvalidMenuOptionMessage();
-                scanner.nextLine(); // clean buffer
-                opt = 0;
+                scanner.next();
             }
         }
-        scanner.close();
         return opt;
     }
 
@@ -63,7 +58,6 @@ public class Navigator {
         Scanner scanner = new Scanner(System.in);
         showActiveGamesListScreenHeader(gamesList);
         int resp = scanner.nextInt();
-        scanner.close;
         return resp;
     }
 
@@ -71,7 +65,6 @@ public class Navigator {
         Scanner scanner = new Scanner(System.in);
         showInvalidGameOptionMessage();
         scanner.next();
-        scanner.close;
     }
 
     public static void displayGameInWatchMode(GameModel game) {
@@ -85,7 +78,6 @@ public class Navigator {
             showWinnerPlayerFragment(game.thisTurnPlayer);
         }
         scanner.next();
-        scanner.close;
     }
 
     public static int displayGameInMyTurnMode(GameModel game) {
@@ -110,7 +102,6 @@ public class Navigator {
                 opt = 0;
             }
         }
-        scanner.close;
         return opt;
     }
 

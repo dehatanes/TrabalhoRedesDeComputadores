@@ -40,52 +40,13 @@ public class Client {
         Socket s = new Socket(ip, Constants.SERVER_SOCKET);
         oos = new ObjectOutputStream(s.getOutputStream());
         ois = new ObjectInputStream(s.getInputStream());
-        
-        Thread sendMessage = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    myPlayerName = Navigator.goToStartAndGetNewClient();
-                    createUsername();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
-                boolean finish = false;
-                while (!finish) {
-                    try {
-                        Request r = new Request();
-                        int optionSelected = Navigator.goToMenu(myPlayerName);
-                        switch (optionSelected) {
-                            case 1:
-                                System.out.println("Watch Game");
-                                //watchGame();
-                                break;
-                            case 2:
-                                System.out.println("New Multiplayer Game");
-                                //startNewMultiplayerGame();
-                                break;
-                            case 3:
-                                System.out.println("Start New Solo Game");
-                                //startNewSoloGame();
-                                break;
-                            default:
-                                r.status = Constants.STATUS_CLIENT_LOGOUT;
-                                System.out.println("Logout");
-                                finish = true;
-                                break;
-                        }
-                        if (r.status != Constants.UNKNOWN_STATUS) {
-                            oos.writeObject(r);
-                            oos.flush();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                System.exit(0);
-            }
-        });
+        try {
+            myPlayerName = Navigator.goToStartAndGetNewClient();
+            createUsername();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Thread readMessage = new Thread(new Runnable() {
             @Override
@@ -94,15 +55,15 @@ public class Client {
                     try {
                         Request r = (Request) ois.readObject();
                         switch (r.status) {
-                            case Constants.STATUS_CLIENT_CREATED:
-                                System.out.println("Conexão criada com sucesso");
-                                break;
                             case Constants.STATUS_USERNAME_UNAVAILABLE:
                                 myPlayerName = Navigator.reenterUsername();
                                 createUsername();
                                 break;
+                            case Constants.STATUS_CLIENT_CREATED:
+                                getUserMenuOption();
+                                break;
                             default:
-                                System.out.println("Message received");
+                                System.out.println("Message received. status: " + r.status);
                                 break;
                         }
                     } catch (IOException e) {
@@ -114,9 +75,7 @@ public class Client {
             }
         });
 
-        sendMessage.start();
         readMessage.start();
-
     }
 
     //private static void watchGame(){
@@ -208,6 +167,41 @@ public class Client {
     private static void createUsername() throws IOException {
         Request r = new Request();
         r.status = Constants.STATUS_NEW_CLIENT;
+        r.username = myPlayerName;
+        oos.writeObject(r);
+        oos.flush();
+    }
+
+    private static void getUserMenuOption() throws IOException {
+        Request r = new Request();
+        r.username = myPlayerName;
+
+        int optionSelected = Navigator.goToMenu(myPlayerName);
+        switch (optionSelected) {
+            case 1:
+                r.status = Constants.STATUS_WATCH;
+                break;
+            case 2:
+                r.status = Constants.STATUS_NEW_MULT_GAME;
+                //startNewMultiplayerGame();
+                break;
+            case 3:
+                r.status = Constants.STATUS_NEW_SINGL_GAME;
+                //startNewSoloGame();
+                break;
+            default:
+                logoutFromServer();
+                System.exit(0);
+                break;
+        }
+        
+        oos.writeObject(r);
+        oos.flush();
+    }
+
+    private static void logoutFromServer() throws IOException {
+        Request r = new Request();
+        r.status = Constants.STATUS_CLIENT_LOGOUT;
         r.username = myPlayerName;
         oos.writeObject(r);
         oos.flush();
