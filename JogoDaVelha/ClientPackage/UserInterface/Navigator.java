@@ -9,13 +9,21 @@ import static ClientPackage.UserInterface.Interfaces.*;
 
 public class Navigator {
 
+    public static void goToErrorGettingIp() {
+        showErrorGettingIp();
+    }
+
+    public static void goToErrorConnectingWithServer() {
+        showErrorConnectingWithServer();
+    }
+
     public static String goToStartAndGetNewClient() {
         Scanner scanner = new Scanner(System.in);
         showStartScreen();
         String resp;
         while(true) {
             resp = scanner.nextLine();
-            resp = resp.replaceAll("\\s+","");
+            resp = resp.replaceAll(" ","");
             if(!resp.isEmpty()){
                 break;
             }
@@ -27,7 +35,15 @@ public class Navigator {
     public static String reenterUsername() {
         Scanner scanner = new Scanner(System.in);
         showUsernameError();
-        String resp = scanner.nextLine();
+        String resp;
+        while(true) {
+            resp = scanner.nextLine();
+            resp = resp.replaceAll(" ","");
+            if(!resp.isEmpty()){
+                break;
+            }
+            showEmptyUsernameError();
+        }
         return resp;
     }
 

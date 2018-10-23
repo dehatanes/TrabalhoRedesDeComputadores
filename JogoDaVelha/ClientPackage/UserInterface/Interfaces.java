@@ -4,6 +4,24 @@ import java.io.IOException;
 
 class Interfaces  {
 
+    static void showErrorGettingIp() {
+        System.out.println("-------------------------");
+        System.out.println("ERRO - IP NAO FORNECIDO");
+        System.out.println("-------------------------");
+        System.out.println();
+        System.out.println("Necessario o parametro <SERVER_IP>.");
+        System.out.println("Encerrando cliente!");
+    }
+
+    static void showErrorConnectingWithServer() {
+        System.out.println("--------------------------------------------");
+        System.out.println("Nao foi possivel se conectar com servidor!");
+        System.out.println("--------------------------------------------");
+        System.out.println();
+        System.out.println("O servidor encontra-se desconectado ou o ip informado nao esta correto.");
+        System.out.println("Encerrando cliente!");
+    }
+
     static void showStartScreen() {
         clearConsole();
         System.out.println("---------------------------");
@@ -55,7 +73,7 @@ class Interfaces  {
         System.out.println("Bem vindo(a), " + userName);
         System.out.println();
         System.out.println("Escolha uma das opcoes abaixo:");
-        System.out.println("1) Assistir um jogo");
+        System.out.println("1) Jogo existente");
         System.out.println("2) Comecar novo jogo contra outro jogador");
         System.out.println("3) Comecar novo jogo contra um bot");
         System.out.println("4) SAIR");

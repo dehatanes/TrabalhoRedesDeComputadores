@@ -13,7 +13,7 @@ public class Constants {
 
     public static final int STATUS_NEW_MULT_GAME = 201;
     public static final int STATUS_NEW_SINGL_GAME = 202;
-    public static final int STATUS_WATCH = 209;
+    public static final int STATUS_EXISTING_GAME = 209;
 
     public static final int STATUS_NEXT_TURN = 211;
     public static final int STATUS_LIST_GAMES = 212;

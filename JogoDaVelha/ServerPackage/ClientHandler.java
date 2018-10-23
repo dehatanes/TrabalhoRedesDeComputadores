@@ -7,87 +7,91 @@ import java.io.*;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable {
-    public String name;
-    final ObjectInputStream ois;
-    final ObjectOutputStream oos;
-    Socket s;
+
+    String name;
     boolean isloggedin;
 
+    final ObjectInputStream ois;
+    final ObjectOutputStream oos;
+    private Socket s;
+
+    ////////////////////
+    // SETUP HANDLER 
+    ////////////////////
+
     public ClientHandler(Socket s, ObjectInputStream ois, ObjectOutputStream oos) {
+        this.isloggedin = true;
         this.ois = ois;
         this.oos = oos;
         this.s = s;
-        this.isloggedin = true;
     }
+
+    ////////////////////
+    // CLIENT HANDLER 
+    ////////////////////
 
     @Override
     public void run() {
         Request received;
-        while (true) {
-            if (!this.isloggedin) {
-                break;
-            }
+        while (isloggedin) {
             try {
                 received = (Request) ois.readObject();
-                Request send = new Request();
+                // PREPARE RESPONSE
+                Request requestToSend = new Request();
                 switch (received.status) {
                     case Constants.STATUS_NEW_CLIENT:
-                        if(Server.addNewClient(received.username, this)){ // sucesso ao adicionar cliente
+                        System.out.println("\nSTATUS_NEW_CLIENT player: " + received.username);
+                        if(Server.addNewClient(received.username, this)){ 
+                            // sucesso ao adicionar cliente
                             this.name = received.username;
-                            send.status = Constants.STATUS_CLIENT_CREATED;
+                            requestToSend.status = Constants.STATUS_CLIENT_CREATED;
                         } else { // usuario ja em uso
-                            send.status = Constants.STATUS_USERNAME_UNAVAILABLE;
+                            requestToSend.status = Constants.STATUS_USERNAME_UNAVAILABLE;
                         }
                         break;
                     case Constants.STATUS_LIST_GAMES:
                         System.out.println("\nSTATUS_LIST_GAMES player: " + received.username);
                         // todo change
-                        this.name = received.username;
-                        send.status = Constants.STATUS_CLIENT_CREATED;
+                        requestToSend.status = Constants.STATUS_CLIENT_CREATED;
                         break;
                     case Constants.STATUS_NEW_MULT_GAME:
                         System.out.println("\nSTATUS_NEW_MULT_GAME player: " + received.username);
                         // todo change
-                        this.name = received.username;
-                        send.status = Constants.STATUS_CLIENT_CREATED;
+                        requestToSend.status = Constants.STATUS_CLIENT_CREATED;
                         break;
                     case Constants.STATUS_NEW_SINGL_GAME:
                         System.out.println("\nSTATUS_NEW_SINGL_GAME player: " + received.username);
                         // todo change
-                        this.name = received.username;
-                        send.status = Constants.STATUS_CLIENT_CREATED;
+                        requestToSend.status = Constants.STATUS_CLIENT_CREATED;
                         break;
                     case Constants.STATUS_NEXT_TURN:
                         System.out.println("\nSTATUS_NEXT_TURN player: " + received.username);
                         // todo change
-                        this.name = received.username;
-                        send.status = Constants.STATUS_CLIENT_CREATED;
+                        requestToSend.status = Constants.STATUS_CLIENT_CREATED;
                         break;
                     case Constants.STATUS_GAME_OVER:
                         System.out.println("\nSTATUS_GAME_OVER player: " + received.username);
                         // todo change
-                        this.name = received.username;
-                        send.status = Constants.STATUS_CLIENT_CREATED;
+                        requestToSend.status = Constants.STATUS_CLIENT_CREATED;
                         break;
-                    case Constants.STATUS_WATCH:
-                        System.out.println("\nSTATUS_WATCH player: " + received.username);
+                    case Constants.STATUS_EXISTING_GAME:
+                        System.out.println("\nSTATUS_EXISTING_GAME player: " + received.username);
                         // todo change
-                        this.name = received.username;
-                        send.status = Constants.STATUS_CLIENT_CREATED;
+                        requestToSend.status = Constants.STATUS_CLIENT_CREATED;
                         break;
                     case Constants.STATUS_CLIENT_LOGOUT:
                         System.out.println("\nSTATUS_CLIENT_LOGOUT player: " + received.username);
-                        this.logout();
+                        logout();
                         break;
                 }
-                if (send.status != Constants.UNKNOWN_STATUS && send.status != Constants.STATUS_ERRO) {
-                    oos.writeObject(send);
-                    oos.flush();
+                // SEND RESPONSE
+                if (requestToSend.status != Constants.UNKNOWN_STATUS && requestToSend.status != Constants.STATUS_ERRO) {
+                    sendRequest(requestToSend);
                 }
 
             } catch (IOException e) {
-                if(this.isloggedin) {
-                    this.logout();
+                if(isloggedin) {
+                    logout();
                 }
                 break;
             } catch (ClassNotFoundException e) {
@@ -96,29 +100,37 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    public void logout() {
+    /////////////////////
+    // RESPONSE METHODS
+    /////////////////////
+
+    // GENERAL PURPOSES
+
+    private void sendRequest(Request r) {
         try {
-            if(Server.removeClient(this.name)) {
-                this.isloggedin = false;
-                this.ois.close();
-                this.oos.close();
-                this.s.close();
-            } else {
-                this.isloggedin = false;
-            }
+            // complete response
+            r.username = this.name;
+            // send response
+            this.oos.writeObject(r);
+            this.oos.flush();
+        } catch (IOException e) {
+            // pass
+        }
+    }
+
+    // LOGOUT
+
+    private void logout() {
+        try {
+            this.isloggedin = false;
+            Server.removeClient(this.name);
+            this.ois.close();
+            this.oos.close();
+            this.s.close();
         } catch (IOException e) {
             System.out.println("Erro na hora de fechar o cliente: " + this.name);
             e.printStackTrace();
             System.out.println();
-        }
-    }
-
-    private void sendRequest(Request r) {
-        try {
-            this.oos.writeObject(r);
-            this.oos.flush();
-        } catch (IOException e) {
-
         }
     }
 }
