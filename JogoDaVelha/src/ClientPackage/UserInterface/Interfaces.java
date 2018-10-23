@@ -10,14 +10,29 @@ class Interfaces  {
         System.out.println("BEM VINDO AO JOGO DA VELHA");
         System.out.println("---------------------------");
         System.out.println();
-        System.out.print("Digite seu nome de usuario para continuar: ");
+        System.out.print("Digite seu nome de usuario para continuar (espacos serao ignorados): ");
     }
 
     static void showUsernameError(){
         clearConsole();
-        System.out.println("---------------------------");
-        System.out.println("FALHA AO LOGAR");
-        System.out.println("---------------------------");
+        System.out.println("--------------------------------------");
+        System.out.println("FALHA AO LOGAR - USUARIO JA ESCOLHIDO");
+        System.out.println("--------------------------------------");
+        System.out.println();
+        System.out.println("Esse nome de usuario ja foi escolhido!");
+        System.out.println("Tente outro nome e lembre-se que espacos sao desconsiderados");
+        System.out.println();
+        System.out.print("Digite um novo nome de usuario para continuar: ");
+    }
+
+    static void showEmptyUsernameError(){
+        clearConsole();
+        System.out.println("----------------------------------");
+        System.out.println("FALHA AO LOGAR - USUARIO INVALIDO");
+        System.out.println("----------------------------------");
+        System.out.println();
+        System.out.println("Esse nome de usuario eh invalido!");
+        System.out.println("(Ja disse que espacos nao sao considerados)");
         System.out.println();
         System.out.print("Digite um novo nome de usuario para continuar: ");
     }
@@ -38,6 +53,7 @@ class Interfaces  {
         System.out.println("---------------------------");
         System.out.println();
         System.out.println("Bem vindo(a), " + userName);
+        System.out.println();
         System.out.println("Escolha uma das opcoes abaixo:");
         System.out.println("1) Assistir um jogo");
         System.out.println("2) Comecar novo jogo contra outro jogador");

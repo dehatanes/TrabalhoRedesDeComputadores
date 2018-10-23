@@ -12,7 +12,15 @@ public class Navigator {
     public static String goToStartAndGetNewClient() {
         Scanner scanner = new Scanner(System.in);
         showStartScreen();
-        String resp = scanner.nextLine();
+        String resp;
+        while(true) {
+            resp = scanner.nextLine();
+            resp = resp.replaceAll("\\s+","");
+            if(!resp.isEmpty()){
+                break;
+            }
+            showEmptyUsernameError();
+        }
         return resp;
     }
 
