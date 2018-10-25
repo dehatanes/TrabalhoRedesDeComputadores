@@ -2,24 +2,26 @@ package Models;
 
 public class Constants {
 
-    // STATUS CONSTANTS
+    // MESSAGE STATUS CONSTANTS
+    // General purpose
+    public static final int UNAUTHORIZED_STATUS = 401;
     public static final int UNKNOWN_STATUS = 999;
+    public static final int STATUS_ERRO = 666;
 
+    // Client and user things
     public static final int STATUS_NEW_CLIENT = 101;
     public static final int STATUS_CLIENT_CREATED = 102;
     public static final int STATUS_I_AM_ALIVE = 103;
     public static final int STATUS_USERNAME_UNAVAILABLE = 104;
     public static final int STATUS_CLIENT_LOGOUT = 109;
 
+    // Games and Turns
     public static final int STATUS_NEW_MULT_GAME = 201;
     public static final int STATUS_NEW_SINGL_GAME = 202;
     public static final int STATUS_EXISTING_GAME = 209;
-
     public static final int STATUS_NEXT_TURN = 211;
     public static final int STATUS_LIST_GAMES = 212;
     public static final int STATUS_GAME_OVER = 219;
-
-    public static final int STATUS_ERRO = 666;
 
 
     // APPLICATION CONSTANTS

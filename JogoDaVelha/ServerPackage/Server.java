@@ -13,16 +13,17 @@ public class Server {
     static Map<String, GameModel> activeGames = new HashMap<String, GameModel>();
 
     public static void main(String[] args) throws IOException {
+        ////////////////////
+        //  SERVER STARTER 
+        ////////////////////
         ServerSocket ss = new ServerSocket(Constants.SERVER_SOCKET);
         System.out.println("THE SERVER IS ALIVE!\n");
-
         // Aguarda alguém se conectar. A execução do servidor
         // fica bloqueada na chamada do método accept da classe
         // ServerSocket. Quando alguém se conectar ao servidor, o
         // método desbloqueia e retorna com um objeto da classe
         // Socket, que é uma porta da comunicação.
         System.out.println("Aguardando conexao de clientes...\n");   
-
         Socket cliente;
         while (true) {
             cliente = ss.accept();
@@ -35,7 +36,13 @@ public class Server {
         }
     }
 
-    public static boolean addNewClient(String clientName, ClientHandler handler){
+    ////////////////////
+    //    SERVICES 
+    ////////////////////
+
+    // MANAGING CLIENTS AND USERS
+
+    public static boolean loginNewClient(String clientName, ClientHandler handler){
         if(activeClients.containsKey(clientName)) {
             System.out.println("Tentativa de conexao do cliente: " + clientName + ". Porem usuario ja esta em uso.");
             return false;
@@ -56,4 +63,6 @@ public class Server {
             return false;
         }
     }
+
+    // MANAGING GAME MATCHES
 }
