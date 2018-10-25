@@ -129,7 +129,9 @@ public class ClientHandler implements Runnable {
     }
 
     private Request requestAuthenticator(Request request) {
-        request.username = this.name;
+        if(request.username == null) {
+            request.username = this.name;            
+        }
         return request;
     }
 

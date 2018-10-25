@@ -55,14 +55,25 @@ public class Client {
         Thread readMessage = new Thread(new Runnable() {
             @Override
             public void run() {
+                Request received;
                 while (true) {
                     try {
                         // get the server message
-                        Request r = (Request) ois.readObject();
-                        // handle the server message
-                        switch (r.status) {
+                        received = (Request) ois.readObject();
+
+                        // verify message auth
+                        if(!authVerificationCheck(received) && myPlayerName != null){
+                            // drop if not authenticated
+                            continue;
+                        }
+
+                        // handle the received (valid) message
+                        switch (received.status) {
+                            case Constants.UNAUTHORIZED_STATUS:
+                                    // FURTHER READING
+                                break;
                             case Constants.STATUS_CLIENT_CREATED:
-                                myPlayerName = r.username;
+                                myPlayerName = received.username;
                                 getUserMenuOption();
                                 break;
                             case Constants.STATUS_USERNAME_UNAVAILABLE:
@@ -70,10 +81,11 @@ public class Client {
                                 break;
                             default:
                                 // todo remove it when all STATUS are mapped
-                                System.out.println("MENSAGEM_RECEBIDA: Status: " + r.status);
+                                System.out.println("MENSAGEM_RECEBIDA: Status: " + received.status);
                                 System.out.println("Nao sei como lidar.");
                                 break;
                         }
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (ClassNotFoundException e) {
@@ -90,10 +102,27 @@ public class Client {
     //////////////////////////
 
     // GENERAL PURPOSES
+    
+    private static boolean authVerificationCheck(Request receivedRequest){
+        if(myPlayerName != null && myPlayerName.equals(receivedRequest.username)) {
+            return true;
+        }
+        return false;
+    }
 
-    private static void sendMessageToServer(Request r) throws IOException {
-        oos.writeObject(r);
+    private static Request requestAuthenticator(Request request) {
+        if(request.username == null) {
+        request.username = myPlayerName;            
+        }
+        return request;
+    }
+
+    private static void sendMessageToServer(Request response) throws IOException {
+        response  = requestAuthenticator(response);
+        // send response
+        oos.writeObject(response);
         oos.flush();
+        // interface feedback
         startLoadingScreen();
     }
 
